@@ -1,3 +1,10 @@
 # Python 字节码缓存（每次运行都会自动生成，不该进仓库）
 __pycache__/
 *.pyc
+
+# q2 运行 save_to_json 时生成的用户数据文件（属于运行产物，不是源码）
+users.json
+
+# 编辑器 / IDE 的本地配置
+.vscode/
+.idea/
