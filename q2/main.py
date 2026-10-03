@@ -1,5 +1,4 @@
 import json
-import os
 
 class UserManager:
     def __init__(self):
@@ -41,6 +40,22 @@ class UserManager:
     def list_users(self):
         return self.users
 
+    def save_to_json(self, name:str):
+        with open(f"{name}", "w", encoding="utf-8") as f:
+            json.dump(self.users, f, ensure_ascii=False)
+
+    def load_from_json(self, name:str):
+        with open(f"{name}", "r", encoding="utf-8") as f:
+            self.users = json.load(f)
+
+        id_max = 0
+        for i in self.users:
+            id_max = i["id"]
+        self._next_id = id_max + 1
+
+        return self.users
+
+            
 
 
 
@@ -55,6 +70,10 @@ if __name__ == "__main__":
     print(um.remove_user(2))
     print(um.remove_user(2))
     print(um.list_users() )
-                
+    um.save_to_json("users.json")
+    um2 = UserManager()
+    um2.load_from_json("users.json")
+    print(um2.list_users())
+                    
 
         
