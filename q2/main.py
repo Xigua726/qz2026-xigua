@@ -18,7 +18,14 @@ class UserManager:
         for i in self.users:
             if i["id"] == get_id:
                 return i
-            
+
+    def update_age(self,get_id:int, get_age:int):
+        for i in self.users:
+            if i["id"] == get_id:
+                i["age"] = get_age
+                return True
+        return False
+
 
 
 if __name__ == "__main__":
@@ -28,6 +35,7 @@ if __name__ == "__main__":
     print(um.users)   
     print(um.get_user(1) )
     print(um.get_user(99))
+    print(um.update_age(2, 19))
 
                 
 
