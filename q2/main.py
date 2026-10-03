@@ -26,6 +26,22 @@ class UserManager:
                 return True
         return False
 
+    def remove_user(self, get_id:int):
+        aim = " "
+        for i in self.users:
+            if i["id"] == get_id:
+                aim = i
+                break
+
+        if aim != " ":
+            self.users.remove(aim)
+            return True
+        return False
+
+    def list_users(self):
+        return self.users
+
+
 
 
 if __name__ == "__main__":
@@ -36,7 +52,9 @@ if __name__ == "__main__":
     print(um.get_user(1) )
     print(um.get_user(99))
     print(um.update_age(2, 19))
-
+    print(um.remove_user(2))
+    print(um.remove_user(2))
+    print(um.list_users() )
                 
 
         
