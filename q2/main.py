@@ -3,29 +3,29 @@ import json
 class UserManager:
     def __init__(self):
         self.users = []
-        self._next_id = 1 
+        self._next_id = 1                                           #初始化列表
 
 
-    def add_user(self, name:str, age:int) -> dict:
+    def add_user(self, name:str, age:int) -> dict:                  ##add_user方法
         user_id = self._next_id
         self._next_id += 1 
         user_dict = {f"id":user_id, "name":name, "age":age}
         self.users.append(user_dict)
-        return user_dict
+        return user_dict                                           
 
-    def get_user(self, get_id:int):
+    def get_user(self, get_id:int):                                 #get_user方法
         for i in self.users:
             if i["id"] == get_id:
                 return i
 
-    def update_age(self,get_id:int, get_age:int):
+    def update_age(self,get_id:int, get_age:int):                   #update_age方法
         for i in self.users:
             if i["id"] == get_id:
                 i["age"] = get_age
                 return True
         return False
 
-    def remove_user(self, get_id:int):
+    def remove_user(self, get_id:int):                              #remove_user方法
         aim = " "
         for i in self.users:
             if i["id"] == get_id:
@@ -37,18 +37,18 @@ class UserManager:
             return True
         return False
 
-    def list_users(self):
+    def list_users(self):                                           #list_users方法
         return self.users
 
-    def save_to_json(self, name:str):
+    def save_to_json(self, name:str):                               #save_to_json方法
         with open(f"{name}", "w", encoding="utf-8") as f:
             json.dump(self.users, f, ensure_ascii=False)
 
-    def load_from_json(self, name:str):
+    def load_from_json(self, name:str):                             #load_from_json方法      
         with open(f"{name}", "r", encoding="utf-8") as f:
             self.users = json.load(f)
 
-        id_max = 0
+        id_max = 0                                                  #从文件加载后，后续添加用户的 id 应接续已加载的最大 id
         for i in self.users:
             id_max = i["id"]
         self._next_id = id_max + 1
@@ -57,12 +57,10 @@ class UserManager:
 
             
 
-
-
-if __name__ == "__main__":
+if __name__ == "__main__":                                          #测试数据
     um = UserManager()
-    print(um.add_user("张三", 18))     # 期望 {'id': 1, 'name': '张三', 'age': 18}
-    print(um.add_user("李四", 20))     # 期望 {'id': 2, 'name': '李四', 'age': 20}
+    print(um.add_user("张三", 18))     
+    print(um.add_user("李四", 20))     
     print(um.users)   
     print(um.get_user(1) )
     print(um.get_user(99))
